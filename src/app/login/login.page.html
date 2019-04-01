@@ -5,6 +5,20 @@
 </ion-header>
 
 <ion-content padding>
-  
+<form [formGroup]="formulario"]
+  <ion-list>
+    <ion-item>
+      <ion-input  formControlName="email" type="email" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="senha" type="password" placeholder="Senha"></ion-input>
+    </ion-item>
+  </ion-list>
 
+  <ion-button shape="round" expand="full"  (click)="clicou()">
+    Logar
+  </ion-button>
+</form>
+<p id="alerta">{{ msg }}</p> 
+<p id="Cadastre-se">Crie aqui a sua conta!</p>  
 </ion-content>
