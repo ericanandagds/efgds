@@ -11,37 +11,20 @@ const routes: Routes = [
     path : 'home',
     component : HomePage,
     children:[
-      {path:'', redirectTo:'/Home', pathMatch:'full'},
-      { path: 'tradicionais', loadChildren: './home/tradicionais/tradicionais.module#TradicionaisPageModule' },
-      { path: 'especiais', loadChildren: './home/especiais/especiais.module#EspeciaisPageModule' },
-      { path: 'doces', loadChildren: './home/doces/doces.module#DocesPageModule' },
+      { path:'', redirectTo:'/home/tradicionais', pathMatch:'full'},
+      { path: 'tradicionais', loadChildren: './tradicionais/tradicionais.module#TradicionaisPageModule' },
+      { path: 'especiais', loadChildren: './especiais/especiais.module#EspeciaisPageModule' },
+      { path: 'doces', loadChildren: './doces/doces.module#DocesPageModule' },
     ]
-  }
-
-
-]
-
-
-
-
-
-
-
-
+  }]
 
 
 @NgModule({
-  imports: [
+   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: HomePage
-      }
-    ])
-  ],
+    RouterModule.forChild(routes)],
   declarations: [HomePage]
 })
 export class HomePageModule {}

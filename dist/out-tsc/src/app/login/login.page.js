@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
 import { Component } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { AutenticacaoGuard } from '../guard/autenticacao.guard';
 var LoginPage = /** @class */ (function () {
     function LoginPage(formBuilder) {
@@ -21,14 +21,13 @@ var LoginPage = /** @class */ (function () {
         else
             this.msg = "Email ou senha incorreta";
     };
-    var _a;
     LoginPage = tslib_1.__decorate([
         Component({
             selector: 'app-login',
             templateUrl: './login.page.html',
             styleUrls: ['./login.page.scss'],
         }),
-        tslib_1.__metadata("design:paramtypes", [typeof (_a = typeof FormBuilder !== "undefined" && FormBuilder) === "function" ? _a : Object])
+        tslib_1.__metadata("design:paramtypes", [FormBuilder])
     ], LoginPage);
     return LoginPage;
 }());

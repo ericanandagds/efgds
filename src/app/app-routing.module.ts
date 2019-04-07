@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AutenticacaoGuard} from './guard/autenticacao.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' , canActivate:[AutenticacaoGuard]},
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'cadastro', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
-  {path: '' , loadChildren:'./home/home.module#HomeModule' },
+  { path: '', loadChildren: './home/home.module#HomePageModule'},
   
 ];
 

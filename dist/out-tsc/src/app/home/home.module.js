@@ -5,6 +5,18 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HomePage } from './home.page';
+var routes = [
+    {
+        path: 'home',
+        component: HomePage,
+        children: [
+            { path: '', redirectTo: '/home/tradicionais', pathMatch: 'full' },
+            { path: 'tradicionais', loadChildren: './tradicionais/tradicionais.module#TradicionaisPageModule' },
+            { path: 'especiais', loadChildren: './especiais/especiais.module#EspeciaisPageModule' },
+            { path: 'doces', loadChildren: './doces/doces.module#DocesPageModule' },
+        ]
+    }
+];
 var HomePageModule = /** @class */ (function () {
     function HomePageModule() {
     }
@@ -14,12 +26,7 @@ var HomePageModule = /** @class */ (function () {
                 CommonModule,
                 FormsModule,
                 IonicModule,
-                RouterModule.forChild([
-                    {
-                        path: '',
-                        component: HomePage
-                    }
-                ])
+                RouterModule.forChild(routes)
             ],
             declarations: [HomePage]
         })
