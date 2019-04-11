@@ -6,7 +6,9 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' , canActivate:[AutenticacaoGuard]},
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'cadastro', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
-  { path: '', loadChildren: './home/home.module#HomePageModule'},
+  { path: '', loadChildren: './home/home.module#HomePageModule'},  { path: 'pagamento', loadChildren: './pagamento/pagamento.module#PagamentoPageModule' },
+  { path: 'bebidas', loadChildren: './bebidas/bebidas.module#BebidasPageModule' },
+
   
 ];
 
