@@ -12,9 +12,11 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private storage: Storage
   ) {
     this.initializeApp();
+    
   }
 
   initializeApp() {
