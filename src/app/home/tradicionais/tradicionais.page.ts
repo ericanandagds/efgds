@@ -10,6 +10,7 @@ export class TradicionaisPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
