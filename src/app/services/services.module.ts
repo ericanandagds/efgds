@@ -9,7 +9,11 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
     CommonModule
   ],
   providers:[SQLite],
-  declarations: [ ],
+  declarations: [this.sqlite.create({
+      name:'pizza.db',
+      location: 'default'
+  }) ],
+  
 
 })
 export class ServicesModule { }
