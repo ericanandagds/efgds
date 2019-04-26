@@ -15,13 +15,12 @@ export class BancoService {
   private createDB(){
     this.getDB().then((db:SQLiteObject) => {
       //tabela pizza
-      db.executeSql("CREATE IF NOT EXISTS pizza(id INTEGER PRIMARY KEY AUTOINCREMENT,sabor)", 
+      db.executeSql("CREATE IF NOT EXISTS pizza(id INTEGER PRIMARY KEY AUTOINCREMENT,sabor TEXT)", 
       []);
+
+      
     });
   } 
-  // inserir sabor pizzas
-  
-
 
   protected getDB(){
     return this.sqlite.create({
@@ -29,7 +28,8 @@ export class BancoService {
       location: 'default'
     });
   } 
-    
+  
+  
     
     
     
