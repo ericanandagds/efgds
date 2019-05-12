@@ -13,9 +13,5 @@ export class TradicionaisPage implements OnInit {
     
   }
 
-  adicionar(item) {
-    this.adicionar = 
-
-  }
 
 }
