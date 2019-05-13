@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { extend } from 'webdriver-js-extender';
-import { BancoService } from './banco.service';
-import { promise } from 'protractor';
-import { SQLite } from '@ionic-native/sqlite/ngx';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PizzaService extends BancoService {
-  protected tabela:string = 'pizza';
+export class PizzaService {
+  private db: firebase.database.Reference;
 
+  constructor(){
+    let userID = firebase.auth().currentUser.uid;
+    this.db = firebase.database().ref('pizza').child(userID);
+  }
+  
   
 
   

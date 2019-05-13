@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import {AutenticacaoGuard} from '../guard/autenticacao.guard';
 import { MenuController, ToastController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,9 @@ export class LoginPage implements OnInit {
  
   constructor(private formBuilder:FormBuilder,private route:Router,private menuCtrl:MenuController, private ToastController: ToastController, private alertController:AlertController, private storage:Storage) { }
 
-
+  ionViewWillEnter(){
+    this.menuCtrl.enable(false);
+  }
  
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -24,7 +27,10 @@ export class LoginPage implements OnInit {
       senha:['', [Validators.required, Validators.minLength(6)]]
     })
   }
-clicou(){
+async clicou(){
+  let email = this.formulario.get('email').value;
+  let senha = this.formulario.get('senha').value;
+  firebase.auth()
   if (this.formulario.valid &&
       this.formulario.get('email').value == "teste@teste.com" &&
       this.formulario.get('senha').value == "123456"){
