@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FunctionCall } from '@angular/compiler';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
 import {AutenticacaoGuard} from '../guard/autenticacao.guard';
+import { MenuController, ToastController, AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,10 @@ export class LoginPage implements OnInit {
   msg;
   formulario: FormGroup;
  
-  constructor(private formBuilder:FormBuilder,) { }
+  constructor(private formBuilder:FormBuilder,private route:Router,private menuCtrl:MenuController, private ToastController: ToastController, private alertController:AlertController, private storage:Storage) { }
 
+
+ 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
       email:['', [Validators.email, Validators.required]],

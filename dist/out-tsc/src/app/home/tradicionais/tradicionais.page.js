@@ -5,10 +5,6 @@ var TradicionaisPage = /** @class */ (function () {
     }
     TradicionaisPage.prototype.ngOnInit = function () {
     };
-    TradicionaisPage.prototype.adicionar = function (item) {
-        this.adicionar =
-        ;
-    };
     TradicionaisPage = tslib_1.__decorate([
         Component({
             selector: 'app-tradicionais',

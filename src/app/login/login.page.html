@@ -5,20 +5,29 @@
 </ion-header>
 
 <ion-content padding>
-<form [formGroup]="formulario"]>
-  <ion-list>
-    <ion-item>
-      <ion-input  formControlName="email" type="email" placeholder="Email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input formControlName="senha" type="password" placeholder="Senha"></ion-input>
-    </ion-item>
-  </ion-list>
+  <form [formGroup]="formulario">
+    <ion-list>
+        <!-- EMAIL -->
+        <ion-item>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input type="email" formControlName="email" ></ion-input>
+        </ion-item>
+        <!-- SENHA -->
+        <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" formControlName="senha"></ion-input>
+        </ion-item>
+    </ion-list>
+    
+    <!-- LOGAR -->
+    <ion-button shape="round" expand="full" color="light" (click)="clicou()"> 
+        Logar 
+    </ion-button> 
+  </form>
+  <p id="alerta">{{ msg }}</p>
 
-  <ion-button shape="round" expand="full"  (click)="clicou()">
-    Logar
-  </ion-button>
-</form>
-<p id="alerta">{{ msg }}</p> 
-<p id="Cadastre-se">Crie aqui a sua conta!</p>  
+  <!-- CADASTRAR -->
+  <p id="cadastre-se" (click)="cadastrar()">Não possui conta? Clique aqui para cadastrar-se</p>
+
+  
 </ion-content>
