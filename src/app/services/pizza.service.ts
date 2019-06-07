@@ -11,14 +11,9 @@ export class PizzaService {
     let userID = firebase.auth().currentUser.uid;
     this.db = firebase.database().ref('pizza').child(userID);
   }
+  cadastrar(pizza: PizzaService) {
   
-  
-
-  
-
-  
-    
   }
 
   
-
+}

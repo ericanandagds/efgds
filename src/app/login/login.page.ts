@@ -5,6 +5,7 @@ import {AutenticacaoGuard} from '../guard/autenticacao.guard';
 import { MenuController, ToastController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import * as firebase from 'firebase';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-login',
@@ -25,24 +26,52 @@ export class LoginPage implements OnInit {
     this.formulario = this.formBuilder.group({
       email:['', [Validators.email, Validators.required]],
       senha:['', [Validators.required, Validators.minLength(6)]]
-    })
+    });
   }
 async clicou(){
+
   let email = this.formulario.get('email').value;
   let senha = this.formulario.get('senha').value;
-  firebase.auth().signInWithEmailAndPassword(email,senha).then((usuario)) =>{
-    this.router.navigateByUrl('home')
-  }).catch(erro=>{
+  firebase.auth().signInWithEmailAndPassword(email, senha).then((usuario) => {
+    this.route.navigateByUrl('home');
+  }).catch(erro => {
     this.errorAutenticacao(erro.code);
   })
 }
-  if (this.formulario.valid &&
-      this.formulario.get('email').value == "teste@teste.com" &&
-      this.formulario.get('senha').value == "123456"){
-        AutenticacaoGuard.podeAcessar = true;
-      } else
-      this.msg = "Email ou senha incorreta"; 
-    }
+async cadastrar(){
+  const alert = await this.alertController.create({
+    header: 'Nova Conta',
+    inputs:[
+      {type:"email",placeholder:"Digite um email",name:"login"},
+      {type:"password",placeholder:"Digite sua senha", name:"senha"}
+    ],
+    buttons:[
+      'Cancelar',
+      {text:"Cadastrar",handler:(data) =>{
+        firebase.auth().createUserWithEmailAndPassword(data.login,data.senha).then((usuario)=>{
+          this.route.navigateByUrl('home');        
+        }).catch(erro=> {
+          this.errorAutenticacao(erro.code);
+          })
+        }}     
+      ]
+  })};
+ async errorAutenticacao(codigo) {
+  let error = "Email ou senha inválida";
 
+  switch(codigo) {
+    case 'auth/email-already-in-use': error='Email já está em uso'; break;
+    case 'auth/invalid-email': error='Email inválido'; break;
+    case 'auth/weak-password': error = 'Senha com menos de 6 caracteres'; break;
+    case 'auth/timeout': error='Time out no servidor  '; break;
+    case 'auth/user-not-found': error='Email não cadastrado'; break;
+  
+  }
 
+  const toast = await this.ToastController.create({
+    message: error,
+    duration: 2000
+  });
+  toast.present();
+}
 }

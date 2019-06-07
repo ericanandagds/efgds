@@ -9,11 +9,8 @@ import { PizzaService } from './pizza.service';
   imports: [
     CommonModule
   ],
-  providers:[BancoService,PizzaService, SQLite],
-  declarations: [this.sqlite.create({
-      name:'pizza.db',
-      location: 'default'
-  }) ],
+  providers:[BancoService,PizzaService],
+  declarations: [], 
   
 
 })
