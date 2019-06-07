@@ -30,7 +30,12 @@ export class LoginPage implements OnInit {
 async clicou(){
   let email = this.formulario.get('email').value;
   let senha = this.formulario.get('senha').value;
-  firebase.auth()
+  firebase.auth().signInWithEmailAndPassword(email,senha).then((usuario)) =>{
+    this.router.navigateByUrl('home')
+  }).catch(erro=>{
+    this.errorAutenticacao(erro.code);
+  })
+}
   if (this.formulario.valid &&
       this.formulario.get('email').value == "teste@teste.com" &&
       this.formulario.get('senha').value == "123456"){
