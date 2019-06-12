@@ -6,14 +6,20 @@ import * as firebase from 'firebase';
 })
 export class PizzaService {
   private db: firebase.database.Reference;
+  private userID;
 
   constructor(){
     let userID = firebase.auth().currentUser.uid;
-    this.db = firebase.database().ref('pizza').child(userID);
+    this.db = firebase.firestore().collection('pizza');
   }
   cadastrar(pizza: PizzaService) {
-  
-  }
+    let db = firebase.database();
+    db.ref('pizza').once('value').then (snapshot =>{
+      snapshot.forEach(pizza=>{
+        console.log(pizza.val());
+      });
+    });
+   }
 
   
 }
