@@ -68,10 +68,10 @@ async cadastrar(){
   
   }
 
-  const toast = await this.ToastController.create({
-    message: error,
-    duration: 2000
-  });
-  toast.present();
-}
+    const toast = await this.ToastController.create({
+      message: error,
+      duration: 2000
+    });
+    toast.present();
+  }
 }
