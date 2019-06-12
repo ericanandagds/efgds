@@ -14,8 +14,7 @@ export class PizzaService {
     this.db = firebase.firestore().collection('pizza');
   }
   cadastrar(pizza: pizza) {
-    let db = firebase.database();
-    db.ref('pizza').once('value').then (snapshot =>{
+    this.db.ref('pizza').once('value').then (snapshot =>{
       snapshot.forEach(pizza=>{
         console.log(pizza.val());
       });
@@ -27,6 +26,7 @@ export class PizzaService {
   excluir (id: string) {
     this.db.doc(id).delete();
   }
+     
   async buscarTodos(): Promise<pizza[]> {
     return this.db.where('pizzaID', '==', this.userID).get().then(snapshot => {
       let pizza = [];
@@ -37,4 +37,5 @@ export class PizzaService {
       return pizza;
     });
   }
+
 }
