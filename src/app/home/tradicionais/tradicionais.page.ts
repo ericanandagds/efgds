@@ -12,6 +12,7 @@ import { async } from '@angular/core/testing';
 export class TradicionaisPage implements OnInit {
   
   pizza: pizza = new pizza();
+  toastController: any;
   constructor(private ActivatedRoute:ActivatedRoute,private router:Router,
      private ToastController:ToastController, private PizzaService:PizzaService) { }
 
@@ -36,5 +37,18 @@ export class TradicionaisPage implements OnInit {
       this.router.navigateByUrl("/home/tradicionais");
     }
    
+    salvar() {
+      if (this.pizza.id == null) //Cadastra
+        this.PizzaService.cadastrar(this.pizza);
+      else //Atualiza
+        this.PizzaService.editar(this.pizza);
+  
+      this.toastController.create({
+        message: 'Salvo com sucesso',
+        duration: 2000
+      }).then(toast => toast.present());
+  
+      this.router.navigateByUrl("/home");
+    }
   
 }

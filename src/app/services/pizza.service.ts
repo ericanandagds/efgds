@@ -19,7 +19,7 @@ export class PizzaService {
   cadastrar(pizza: pizza) {
     let doc = this.db.doc();
     pizza.id = doc.id;
-    pizza.pizzaID = this.userID;
+    pizza.pizzaID = this.pizzaID;
     let obj = this.castObject(pizza);
     doc.set(obj);
    }
@@ -32,7 +32,7 @@ export class PizzaService {
   }
 
   async buscarTodos(): Promise<pizza[]> {
-    return this.db.where('pizzaID', '==', this.userID).get().then(snapshot => {
+    return this.db.where('pizzaID', '==', this.pizzaID).get().then(snapshot => {
       let pizza = [];
       snapshot.forEach(doc => {
         pizza.push(doc.data());
